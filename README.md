@@ -1,0 +1,2 @@
+# LightNovelRAG
+Practice learning RAG.
