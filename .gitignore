@@ -210,8 +210,4 @@ __marimo__/
 
 .env
 
-*.txt
-
-/books/
-
 /db/
