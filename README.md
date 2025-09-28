@@ -1,5 +1,148 @@
 # 🐺 Agent and Wolf
 
+[English](#english) | [中文](#中文)
+
+## English
+
+An intelligent dialogue system based on the light novel "Spice and Wolf", implemented using LangChain Agent, RAG (Retrieval Augmented Generation), and multi-tool integration technologies.
+
+### 📖 Project Overview
+
+This project is based on the classic light novel "Spice and Wolf" by Isuna Hasekura, implementing an AI agent that can perfectly roleplay as Holo, the wise wolf heroine. Through LangChain's ReAct Agent framework, Holo can not only answer questions based on novel content but also query real-time information and get current time, demonstrating true "wisdom".
+
+### ✨ Key Features
+
+- **🎭 Perfect Role-playing**: Maintains Holo's unique speech patterns and personality traits
+- **🧠 Smart Tool Integration**: Integrates time queries, Wikipedia search, novel content retrieval, and more
+- **💬 Multi-turn Conversation Memory**: Persistent chat history based on Google Firestore
+- **🔍 Intelligent Retrieval System**: Retrieves relevant information from novel text for accurate story context
+
+### 🛠️ Technical Architecture
+
+- **LangChain ReAct Agent**: Agent framework supporting Think-Act-Observe cycles
+- **Google Gemini 2.5**: Powerful large language model for dialogue generation and reasoning
+- **Chroma Vector DB**: Efficient vector database for semantic search
+- **HuggingFace Embeddings**: Qwen/Qwen3-Embedding-0.6B Chinese text embeddings
+- **Google Firestore**: Cloud-based persistent chat history storage
+- **Wikipedia API**: Real-time encyclopedia knowledge queries
+
+### 🚀 Quick Start
+
+#### Requirements
+
+- Python 3.13+
+- Google AI Studio API Key
+- Google Cloud Project (optional, for chat history storage)
+
+#### Installation
+
+```bash
+# Create virtual environment (recommended)
+conda create -n agent-wolf python=3.13
+conda activate agent-wolf
+
+# Install dependencies
+pip install python-dotenv langchain langchain-community langchain-huggingface 
+pip install langchain-chroma langchain-google-genai langchain-google-firestore
+pip install sentence-transformers wikipedia google-cloud-firestore
+```
+
+#### Environment Setup
+
+1. Create `.env` file:
+```env
+# Required: Google AI API Key
+GOOGLE_API_KEY=your_google_ai_api_key_here
+
+# Optional: Google Cloud configuration
+GOOGLE_CLOUD_PROJECT_ID=your_project_id
+SESSION_ID=user_session_20250928
+```
+
+2. Get Google AI API Key:
+   - Visit [Google AI Studio](https://aistudio.google.com/app/apikey)
+   - Create a new API Key
+   - Copy it to your `.env` file
+
+#### Run the Project
+
+```bash
+python main.py
+```
+
+### 🎪 Usage Examples
+
+#### Basic Conversation
+```
+You: Hello, who are you?
+Holo: Oh? You're asking who I am?
+
+I am Holo the Wise Wolf from the distant northern land of Yoitsu. Look at these 
+beautiful ears and my proud tail - they're not mere decorations.
+
+Now I'm traveling with a certain foolish merchant, helping him solve troubles along 
+the way. You'd better remember my name well - it's a symbol of wisdom.
+```
+
+#### Tool Integration Demo
+```
+You: What time is it now?
+Holo: You're asking what time it is? Let me see... it's already late at night. 
+Specifically, it's around 10:51 PM. Still not sleeping at this hour? 
+Do you want to sneak some apples with me? Hehe.
+
+You: Do you know who Nancy Ip is?
+Holo: Hmm, I looked into this "Nancy Ip" you mentioned. Turns out she's quite a 
+famous scholar in your world, even a university president studying profound subjects. 
+She sounds like someone full of wisdom, but no matter how smart she is, she probably 
+can't compare to me who has lived for hundreds of years, right? 
+After all, my wisdom is the kind that can make wheat fields flourish.
+```
+
+### 🔧 Technical Features
+
+#### ReAct Agent Architecture
+- **Thought**: Analyzes user questions and formulates response strategies
+- **Action**: Selects appropriate tools to gather information
+- **Observation**: Processes results returned by tools
+- **Final Answer**: Integrates information and responds in Holo's style
+
+#### Integrated Tools
+1. **🕒 Time Tool**: Gets current date and time with Chinese formatting
+2. **📚 Wikipedia Tool**: Searches Chinese Wikipedia for real-time knowledge
+3. **💾 Query Database Tool**: Retrieves content from "Spice and Wolf" novel
+
+#### RAG System
+- **Document Chunking**: 1000 character chunks with 200 character overlap
+- **Vectorization**: Qwen3-Embedding-0.6B Chinese embedding model
+- **Retrieval Strategy**: Similarity threshold search, returns top 5 relevant segments
+- **Context-Aware**: Smart retrieval based on chat history
+
+### 🎯 Project Highlights
+
+1. **🎪 Immersive Role-playing**: Perfect recreation of Holo's linguistic style and personality
+2. **🧠 Intelligent Reasoning**: Logic reasoning capabilities based on ReAct framework
+3. **📖 Deep Content Understanding**: Accurate answers to novel-related questions
+4. **⚡ Real-time Information**: Integration with multiple external data sources
+5. **💾 Persistent Memory**: Cross-session chat history retention
+
+### 📄 License
+
+This project is for learning and research purposes only. Please respect copyright laws and do not use for commercial purposes.
+
+### 🙏 Acknowledgments
+
+- **Isuna Hasekura**: Creator of the wonderful "Spice and Wolf" novel series
+- **LangChain Community**: Excellent AI application development framework
+- **Google**: Powerful Gemini large language model
+- **Open Source Community**: Various excellent tools and libraries
+
+---
+
+## 中文
+
+# 🐺 Agent and Wolf
+
 基于轻小说《狼与香辛料》的智能对话系统，使用 LangChain Agent、RAG（检索增强生成）和多工具集成技术实现。
 
 ## 📖 项目简介
@@ -16,7 +159,7 @@
 ### 🛠️ 技术架构
 
 - **LangChain ReAct Agent**: 智能体框架，支持思考-行动-观察循环
-- **Google Gemini 1.5**: 强大的大语言模型用于对话生成和推理
+- **Google Gemini 2.5**: 强大的大语言模型用于对话生成和推理
 - **Chroma Vector DB**: 高效的向量数据库用于语义搜索
 - **HuggingFace Embeddings**: Qwen/Qwen3-Embedding-0.6B 中文文本嵌入
 - **Google Firestore**: 云端聊天历史持久化存储
