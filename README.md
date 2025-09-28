@@ -1,4 +1,4 @@
-# 🐺 LightNovelRAG
+# 🐺 狼与智能体（Agent and Wolf）
 
 基于轻小说《狼与香辛料》的智能对话系统，使用 LangChain、RAG（检索增强生成）和 AI agents技术实现。
 

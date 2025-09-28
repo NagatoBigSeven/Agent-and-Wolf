@@ -1,20 +1,49 @@
 import os
+
 from dotenv import load_dotenv
-from langchain_community.document_loaders import TextLoader
-from langchain.text_splitter import TextSplitter, CharacterTextSplitter, RecursiveCharacterTextSplitter, TokenTextSplitter, SentenceTransformersTokenTextSplitter
-from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_chroma import Chroma
-from langchain.schema.runnable import RunnableLambda, RunnableSequence, RunnableParallel, RunnableBranch
-from langchain.schema.output_parser import StrOutputParser
-from langchain.chains import create_history_aware_retriever, create_retrieval_chain
-from langchain.chains.combine_documents import create_stuff_documents_chain
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from langchain_anthropic import ChatAnthropic
-from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
-from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from google.cloud import firestore
+from langchain.agents import AgentExecutor, create_react_agent
+from langchain.chains import (
+    create_history_aware_retriever,
+    create_retrieval_chain,
+)
+from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain.hub import pull
+from langchain.memory import (
+    ConversationBufferMemory,
+    ConversationSummaryBufferMemory
+)
+from langchain.schema.output_parser import StrOutputParser
+from langchain.schema.runnable import (
+    RunnableBranch,
+    RunnableLambda,
+    RunnableParallel,
+    RunnableSequence
+)
+from langchain.text_splitter import (
+    CharacterTextSplitter,
+    RecursiveCharacterTextSplitter,
+    SentenceTransformersTokenTextSplitter,
+    TextSplitter,
+    TokenTextSplitter
+)
+from langchain_anthropic import ChatAnthropic
+from langchain_chroma import Chroma
+from langchain_community.document_loaders import (
+    FireCrawlLoader,
+    TextLoader,
+    WebBaseLoader
+)
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_google_firestore import FirestoreChatMessageHistory
+from langchain_google_genai import (
+    ChatGoogleGenerativeAI,
+    GoogleGenerativeAIEmbeddings
+)
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+
 def create_database(db_name):
     root_dir = os.path.dirname(os.path.abspath(__file__))
     db_dir = os.path.join(root_dir, "db")
